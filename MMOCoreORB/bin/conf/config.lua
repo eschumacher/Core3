@@ -55,10 +55,10 @@ Core3 = {
 	DBHost = "127.0.0.1",
 	DBPort = 3306,
 	DBName = "swgemu",
-	DBUser = "swgemu",
-	DBPass = "123456",
+	DBUser = "eschu",
+	DBPass = "eschupw",
 	DBInstances = 2,
-	DBSecret = "swgemus3cr37!", -- Change this! This value should be unique and of reasonable length.
+	DBSecret = "mysecretdbinfoeschu", -- Change this! This value should be unique and of reasonable length.
 
 	LoginPort = 44453,
 	LoginProcessingThreads = 1,
@@ -68,8 +68,8 @@ Core3 = {
 	MantisHost = "127.0.0.1",
 	MantisPort = 3306,
 	MantisName = "swgemu",
-	MantisUser = "swgemu",
-	MantisPass = "123456",
+	MantisUser = "eschu",
+	MantisPass = "eschupw",
 	MantisPrfx = "mantis_", -- The prefix for your mantis tables.
 
 	MetricsHost = "localhost",
