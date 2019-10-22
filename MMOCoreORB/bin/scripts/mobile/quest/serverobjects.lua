@@ -511,6 +511,9 @@ includeFile("quest/naboo/veers.lua")
 includeFile("quest/naboo/wert_jopi.lua")
 includeFile("quest/naboo/zazzi.lua")
 includeFile("quest/naboo/zim_zam_blattis.lua")
+-- eschu's development scripts
+includeFile("quest/naboo/merch_crazy_larry.lua")
+
 
 -- Rori
 includeFile("quest/rori/ablest.lua")

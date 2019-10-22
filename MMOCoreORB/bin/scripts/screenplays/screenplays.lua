@@ -669,5 +669,8 @@ includeFile("tests/tests.lua")
 -- Server Event Automation
 includeFile("events/ServerEventAutomation.lua")
 
+-- eschu's development scripts
+includeFile("tasks/naboo/merch_crazy_larry.lua")
+
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")
