@@ -140,7 +140,7 @@ Core3 = {
 
 
 	-- Where tre files are stored
-	TrePath = "/home/swgemu/Desktop/SWGEmu",
+	TrePath = "/home/eschumacher/patches",
 
 	-- Each tre file (order is important!)
 	TreFiles = {
