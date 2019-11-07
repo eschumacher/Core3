@@ -2023,15 +2023,26 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 	if (amount > 0)
 		speciesModifier = getSpeciesXpModifier(player->getSpeciesName(), xpType);
 
-	float buffMultiplier = 1.f;
+	float foodBuffMultiplier = 1.f;
 
 	if (player->hasBuff(BuffCRC::FOOD_XP_INCREASE) && !player->containsActiveSession(SessionFacadeType::CRAFTING))
-		buffMultiplier += player->getSkillModFromBuffs("xp_increase") / 100.f;
+		foodBuffMultiplier += player->getSkillModFromBuffs("xp_increase") / 100.f;
+
+	float botBuffMultiplier = 1.f;
+
+	if (amount > 0)
+	{
+		botBuffMultiplier = player->getSkillMod("bot_xp_buff");
+
+		// lower bound at 1 so that no bug leads to reduced xp
+		if (botBuffMultiplier < 1.f)
+			botBuffMultiplier = 1.f;
+	}
 
 	int xp = 0;
 
 	if (applyModifiers)
-		xp = playerObject->addExperience(xpType, (int) (amount * speciesModifier * buffMultiplier * localMultiplier * globalExpMultiplier));
+		xp = playerObject->addExperience(xpType, (int) (amount * speciesModifier * foodBuffMultiplier * localMultiplier * globalExpMultiplier * botBuffMultiplier));
 	else
 		xp = playerObject->addExperience(xpType, (int)amount);
 
