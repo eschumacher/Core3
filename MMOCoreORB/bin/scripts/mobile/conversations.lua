@@ -297,3 +297,4 @@ includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
 
 -- eschu's development scripts
 includeFile("conversations/tasks/merch_crazy_larry_conv.lua")
+includeFile("conversations/tasks/droid_buffomatic_conv.lua")

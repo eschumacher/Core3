@@ -671,6 +671,7 @@ includeFile("events/ServerEventAutomation.lua")
 
 -- eschu's development scripts
 includeFile("tasks/naboo/merch_crazy_larry.lua")
+includeFile("tasks/naboo/droid_buffomatic.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")

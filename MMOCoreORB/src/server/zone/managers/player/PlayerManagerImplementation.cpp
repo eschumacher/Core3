@@ -235,6 +235,8 @@ void PlayerManagerImplementation::loadLuaConfig() {
 
 	globalExpMultiplier = lua->getGlobalFloat("globalExpMultiplier");
 
+	botBuffExpMultiplier = lua->getGlobalFloat("botBuffExpMultiplier");
+
 	baseStoredCreaturePets = lua->getGlobalInt("baseStoredCreaturePets");
 	baseStoredFactionPets = lua->getGlobalInt("baseStoredFactionPets");
 	baseStoredDroids = lua->getGlobalInt("baseStoredDroids");
@@ -2023,26 +2025,22 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 	if (amount > 0)
 		speciesModifier = getSpeciesXpModifier(player->getSpeciesName(), xpType);
 
-	float foodBuffMultiplier = 1.f;
+	float buffMultiplier = 1.f;
 
 	if (player->hasBuff(BuffCRC::FOOD_XP_INCREASE) && !player->containsActiveSession(SessionFacadeType::CRAFTING))
-		foodBuffMultiplier += player->getSkillModFromBuffs("xp_increase") / 100.f;
-
-	float botBuffMultiplier = 1.f;
-
-	if (amount > 0)
-	{
-		botBuffMultiplier = player->getSkillMod("bot_xp_buff");
-
-		// lower bound at 1 so that no bug leads to reduced xp
-		if (botBuffMultiplier < 1.f)
-			botBuffMultiplier = 1.f;
-	}
+		buffMultiplier += player->getSkillModFromBuffs("xp_increase") / 100.f;
 
 	int xp = 0;
 
+	// Experimental xp buff meant to be given by NPC bots.
+	// Lower bound at 1, so that we never accidentally reduce xp rate for users.
+	if (botBuffExpMultiplier < 1.f)
+	{
+		botBuffExpMultiplier = 1.f;
+	}
+
 	if (applyModifiers)
-		xp = playerObject->addExperience(xpType, (int) (amount * speciesModifier * foodBuffMultiplier * localMultiplier * globalExpMultiplier * botBuffMultiplier));
+		xp = playerObject->addExperience(xpType, (int) (amount * speciesModifier * buffMultiplier * localMultiplier * globalExpMultiplier * botBuffExpMultiplier));
 	else
 		xp = playerObject->addExperience(xpType, (int)amount);
 
@@ -5538,6 +5536,17 @@ void PlayerManagerImplementation::enhanceCharacter(CreatureObject* player) {
 
 	if (message && player->isPlayerCreature())
 		player->sendSystemMessage("An unknown force strengthens you for battles yet to come.");
+}
+
+void PlayerManagerImplementation::addBotExpBuff(CreatureObject* player) {
+	if (player == nullptr)
+		return;
+
+	if (player->isPlayerCreature())
+	{
+		botBuffExpMultiplier = 5.0;
+		player->sendSystemMessage("You feel enlightened, as though you will gain experience faster.");
+	}
 }
 
 void PlayerManagerImplementation::sendAdminJediList(CreatureObject* player) {

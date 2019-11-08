@@ -52,3 +52,6 @@ includeFile("misc/record_keeper_rebel.lua")
 includeFile("misc/seeker.lua")
 includeFile("misc/sullustan_male.lua")
 includeFile("misc/trials_gungan_captain.lua")
+
+-- eschu's development scripts
+includeFile("misc/droid_buffomatic.lua")

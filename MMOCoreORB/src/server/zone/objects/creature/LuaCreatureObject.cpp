@@ -139,6 +139,7 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getHealingThreatList", &LuaCreatureObject::getHealingThreatList },
 		{ "getSkillMod", &LuaCreatureObject::getSkillMod },
 		{ "getGender", &LuaCreatureObject::getGender },
+		{ "addBotExpBuff", &LuaCreatureObject::addBotExpBuff },
 		{ 0, 0 }
 };
 
@@ -1089,4 +1090,11 @@ int LuaCreatureObject::getGender(lua_State* L) {
 	lua_pushnumber(L, realObject->getGender());
 
 	return 1;
+}
+
+int LuaCreatureObject::addBotExpBuff(lua_State* L) {
+	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
+	playerManager->addBotExpBuff(realObject);
+
+	return 0;
 }

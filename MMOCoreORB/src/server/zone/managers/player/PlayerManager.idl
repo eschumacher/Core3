@@ -78,6 +78,8 @@ class PlayerManager extends Observer implements Logger {
 	protected int performanceDuration;
 	protected int medicalDuration;
 
+	protected float botBuffExpMultiplier;
+
 	protected int baseStoredCreaturePets;
 	protected int baseStoredFactionPets;
 	protected int baseStoredDroids;
@@ -519,6 +521,9 @@ class PlayerManager extends Observer implements Logger {
 	 * @param crc CRC of the buff, player target of buff, amount is the attribute modifier for the buff, duration of the buff, buffType specifies whether medical or performance and attribute sets the creature attribute to modify
 	 */
 	private native boolean doEnhanceCharacter(unsigned int crc, CreatureObject player, int amount, int duration, int buffType, byte attribute);
+
+	// Provides increased experience gain rate for Player
+	public native void addBotExpBuff(CreatureObject player);
 
 	public int getBaseStoredCreaturePets() {
 		return baseStoredCreaturePets;
