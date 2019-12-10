@@ -491,6 +491,7 @@ includeFile("tasks/misc/conversations/crafting_contractor_conv_handler.lua")
 includeFile("tasks/misc/conversations/kidnappedNobleConvoHandler.lua")
 includeFile("tasks/misc/conversations/philosopher_conv_handler.lua")
 includeFile("tasks/misc/conversations/herald_tatooine2_conv_handler.lua")
+includeFile("tasks/misc/conversations/tansarii_ranger_merchant.lua")
 
 -- Caves
 includeFile("caves/corellia_afarathu_cave.lua")

@@ -88,6 +88,7 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "info", &LuaSceneObject::info },
 		{ "getPlayersInRange", &LuaSceneObject::getPlayersInRange },
 		{ "isInNavMesh", &LuaSceneObject::isInNavMesh },
+		{ "isResourceContainer", &LuaSceneObject::isResourceContainer },
 		{ 0, 0 }
 
 };
@@ -844,6 +845,14 @@ int LuaSceneObject::getPlayersInRange(lua_State *L) {
 
 int LuaSceneObject::isInNavMesh(lua_State* L) {
 	bool val = realObject->isInNavMesh();
+
+	lua_pushboolean(L, val);
+
+	return 1;
+}
+
+int LuaSceneObject::isResourceContainer(lua_State* L) {
+	bool val = realObject->isResourceContainer();
 
 	lua_pushboolean(L, val);
 

@@ -67,6 +67,15 @@ class ResourceManager extends Observer implements Logger {
 	
 	@local
 	public native void getResourceListByType(@dereferenced Vector<ResourceSpawn> list, int type, final string zoneName);
+
+	/**
+	 * return a list of ResourceSpawns that match the specified type and have spawned since the specified time.
+	 * @param[out]	list		Vector of ResourceSpawn* that match the criteria
+	 * @param[in]	type		String name of resource type to find (ex: "meat" or "creature_resources")
+	 * @param[in]	spawnTime	System time that resource must have spawned equal to or after
+	 */
+	@local
+	public native void getResourceListSpawnedSince(@dereferenced Vector<ResourceSpawn> list, final string type, final unsigned long spawnTime);
 	
 	public native void createResourceSpawn(CreatureObject playerCreature, final unicode args);
 	public native void givePlayerResource(CreatureObject playerCreature, final string restype, final int quantity);

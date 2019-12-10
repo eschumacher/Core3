@@ -1,0 +1,35 @@
+tansarii_ranger_merchant = Creature:new {        
+    objectName = "@mob/creature_names:tansarii_ranger_merchant",
+    customName = "Ranger Merchant",        
+    socialGroup = "",       
+    faction = "",        
+    level = 1,        
+    chanceHit = 0.25,        
+    damageMin = 50,        
+    damageMax = 55,        
+    baseXp = 113,        
+    baseHAM = 180,        
+    baseHAMmax = 220,        
+    armor = 0,        
+    resists = {0,0,0,0,0,0,0,-1,-1},        
+    meatType = "",        
+    meatAmount = 0,       
+    hideType = "",        
+    hideAmount = 0,        
+    boneType = "",        
+    boneAmount = 0,        
+    milk = 0,        
+    tamingChance = 0,        
+    ferocity = 0,        
+    pvpBitmask = NONE,        
+    creatureBitmask = NONE,        
+    optionsBitmask = 264,       --for conversation        
+    diet = HERBIVORE,        
+    templates ={"object/mobile/nhelper_droid.iff"},
+    lootGroups = {},        
+    weapons = {},        
+    conversationTemplate = "tansarii_ranger_merchant_template",        
+    attacks = { }
+}
+CreatureTemplates:addCreatureTemplate(tansarii_ranger_merchant, "tansarii_ranger_merchant")
+

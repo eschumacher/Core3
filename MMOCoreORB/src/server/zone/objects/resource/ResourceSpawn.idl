@@ -226,6 +226,11 @@ class ResourceSpawn extends SceneObject {
 	}
 
 	@read
+	public unsigned long getSpawned() {
+		return spawned;
+	}
+
+	@read
 	public unsigned long getDespawned() {
 		return despawned;
 	}

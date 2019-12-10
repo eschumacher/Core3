@@ -55,6 +55,8 @@
 #include "server/zone/objects/group/GroupObject.h"
 #include "server/zone/managers/sui/LuaSuiManager.h"
 #include "server/zone/managers/skill/LuaSkillManager.h"
+#include "server/zone/managers/resource/LuaResourceManager.h"
+#include "server/zone/objects/resource/LuaResourceContainer.h"
 #include "server/zone/objects/player/sui/LuaSuiBox.h"
 #include "server/zone/objects/scene/components/LuaObjectMenuResponse.h"
 #include "server/zone/objects/scene/variables/ContainerPermissions.h"
@@ -614,6 +616,8 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	Luna<LuaSkill>::Register(luaEngine->getLuaState());
 	Luna<LuaSkillManager>::Register(luaEngine->getLuaState());
 	Luna<LuaContractCrate>::Register(luaEngine->getLuaState());
+	Luna<LuaResourceManager>::Register(luaEngine->getLuaState());
+	Luna<LuaResourceContainer>::Register(luaEngine->getLuaState());
 }
 
 int DirectorManager::loadScreenPlays(Lua* luaEngine) {

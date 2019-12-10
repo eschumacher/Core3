@@ -529,6 +529,8 @@ ResourceSpawn* ResourceSpawner::createResourceSpawn(const String& type,
 		newSpawn->addAttribute(attribName, randomValue);
 	}
 
+	newSpawn->setSpawned(time(0));
+
 	long expires = getRandomExpirationTime(resourceEntry);
 	newSpawn->setDespawned(expires);
 

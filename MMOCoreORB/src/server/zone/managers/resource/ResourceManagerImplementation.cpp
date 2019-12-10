@@ -291,6 +291,37 @@ void ResourceManagerImplementation::getResourceListByType(Vector<ManagedReferenc
 	}
 }
 
+void ResourceManagerImplementation::getResourceListSpawnedSince(
+		Vector<ManagedReference<ResourceSpawn*> >& list,
+		const String& type, unsigned long long spawnTime) {
+
+	list.removeAll();
+
+	ReadLocker locker(_this.getReferenceUnsafeStaticCast());
+
+	ManagedReference<ResourceSpawn*> resourceSpawn;
+
+	try {
+		ResourceMap* resourceMap = resourceSpawner->getResourceMap();
+
+		if (resourceMap != nullptr) {
+			for (int i = 0; i < resourceMap->size(); ++i) {
+				resourceSpawn = resourceMap->get(i);
+
+				if (!resourceSpawn->inShift())
+					continue;
+				
+				if (resourceSpawn->isType(type) && resourceSpawn->getSpawned() >= spawnTime)
+					list.add(resourceSpawn);
+			}
+		}
+
+	} catch (Exception& e) {
+		error(e.getMessage());
+		e.printStackTrace();
+	}
+}
+
 uint32 ResourceManagerImplementation::getAvailablePowerFromPlayer(CreatureObject* player) {
 	SceneObject* inventory = player->getSlottedObject("inventory");
 	uint32 power = 0;
